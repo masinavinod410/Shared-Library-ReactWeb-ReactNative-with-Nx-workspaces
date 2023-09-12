@@ -1,0 +1,25 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "rootDir": ".",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "es2015",
+    "module": "esnext",
+    "lib": ["es2020", "dom"],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@nx/api": ["apps/api/src/index.js"],
+      "@nx/common": ["apps/common/common/src/index.ts"],
+      "@nx/shared": ["apps/shared/src/index.ts"],
+      "@talic-monorepo-app/api": ["apps/api/src/index.ts"]
+    }
+  },
+  "exclude": ["node_modules", "tmp"]
+}

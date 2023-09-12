@@ -1,0 +1,90 @@
+{
+  "name": "talic-web",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/talic-web/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nx/webpack:webpack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "compiler": "babel",
+        "outputPath": "dist/apps/talic-web",
+        "index": "apps/talic-web/src/index.html",
+        "baseHref": "/",
+        "main": "apps/talic-web/src/main.tsx",
+        "tsConfig": "apps/talic-web/tsconfig.app.json",
+        "assets": [
+          "apps/talic-web/src/favicon.ico",
+          "apps/talic-web/src/assets"
+        ],
+        "styles": ["apps/talic-web/src/styles.css"],
+        "scripts": [],
+        "isolatedConfig": true,
+        "webpackConfig": "apps/talic-web/webpack.config.js"
+      },
+      "configurations": {
+        "development": {
+          "extractLicenses": false,
+          "optimization": false,
+          "sourceMap": true,
+          "vendorChunk": true
+        },
+        "production": {
+          "fileReplacements": [
+            {
+              "replace": "apps/talic-web/src/environments/environment.ts",
+              "with": "apps/talic-web/src/environments/environment.prod.ts"
+            }
+          ],
+          "optimization": true,
+          "outputHashing": "all",
+          "sourceMap": false,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nx/webpack:dev-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "talic-web:build",
+        "hmr": true
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "talic-web:build:development"
+        },
+        "production": {
+          "buildTarget": "talic-web:build:production",
+          "hmr": false
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/talic-web/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "apps/talic-web/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
+      }
+    }
+  },
+  "tags": []
+}
