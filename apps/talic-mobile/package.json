@@ -11,7 +11,7 @@
     "react-native-svg": "*",
     "metro-config": "*",
     "react-native-svg-transformer": "*",
-    "axios": "*",
-    "shared":"C:/Users/WX662MZ/talic-monorepo-app/apps/shared"
+    "@nx/devkit": "*",
+    "axios": "*"
   }
 }
